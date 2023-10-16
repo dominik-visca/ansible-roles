@@ -1,0 +1,17 @@
+- name: Creating users and groups with ssh keys
+  include_tasks: users.yml
+
+- name: Updating OS
+  include_tasks: update_os.yml
+
+- name: Enable unattended upgrades
+  include_tasks: autoupdate.yml
+
+- name: Hardening sshd
+  include_tasks: sshd.yml
+
+- name: Installing fail2ban
+  include_tasks: fail2ban.yml
+  when:
+    - ansible_os_family == 'Debian'
+    - security_autoupdate_enabled | bool

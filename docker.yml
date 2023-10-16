@@ -1,0 +1,8 @@
+- name: Install docker
+  hosts: ubuntu
+  gather_facts: yes
+  become: true
+  become_method: sudo
+  #become_user: root
+  roles:
+    - docker
